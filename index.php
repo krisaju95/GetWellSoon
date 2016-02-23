@@ -8,7 +8,7 @@
 include("lib/configure.php");
 session_start();
 if(isset($_SESSION['login_type'])){
-	if($_SESSION['login_type']=="admin") 
+	if($_SESSION['login_type']=="admin")
 	{
 		header("location: home.php");
 	}
@@ -19,14 +19,14 @@ if(isset($_SESSION['login_type'])){
 	else if($_SESSION['login_type']=="lab_admin")
 	{
 		header("location: lab_admin_home.php");
-	}	
+	}
 }
 
 $error="";
 
 if(isset($_POST['submit'])) {
 	session_start();
-	
+
 	// Define $myusername and $mypassword
 	$myusername=$_POST['username'];
 	$mypassword=$_POST['password'];
@@ -58,10 +58,10 @@ if(isset($_POST['submit'])) {
 		{
 			header("location: doctor_home.php");
 		}
-		else 
+		else
 		{
 			header("location: lab_admin_home.php");
-		}		
+		}
 	}
 	else {
 		$error.= "<br>Invalid username or password.";
@@ -73,7 +73,7 @@ if(isset($_POST['submit'])) {
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="icon" href="images/cross.png" type="image/gif" sizes="16x16"> 
+<link rel="icon" href="images/cross.png" type="image/gif" sizes="16x16">
 <title>NITC Health Centre</title>
 <link href="css/login.css" type="text/css" rel="stylesheet"/>
 <style type="text/css">
@@ -89,17 +89,17 @@ body,td,th {
 	<h1>Login </h1>
 	<form action="" method="post">
 		<li>
-			<input type="text" name='username' class="text" autocomplete="on" onfocus="if(this.value == 'User Name') {this.value='';};" onblur="if (this.value == '') {this.value = 'User Name';}" value="User Name" ><p class=" icon user"></p>
+			<input type="text" name='username' class="text" autocomplete="on" placeholder="User Name"><p class=" icon user"></p>
 		</li>
 		<li>
-			<input name = 'password' onfocus="if(this.value == 'Password') {this.type='password' ; this.value='';};" onblur="if (this.value == '') {this.type='text'; this.value = 'Password';}" value="Password" type="text"><p class=" icon lock"></p>
+			<input name = 'password' type="text" placeholder="Password"><p class=" icon lock"></p>
 		</li>
         <div>
 			<input type="submit" name="submit" value="Sign In" >
 		</div>
         <span class="form_error"><?php echo $error; ?></span>
 	</form>
-	<a href="features/forgot_password.php" id="forgot_pw">forgot password</a>
+	<a href="features/forgot_password.php" id="forgot_pw">Forgot Password</a>
 </div>
 </body>
 </html>

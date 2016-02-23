@@ -2,10 +2,9 @@
 	background-image: url("../images/logo.jpg");
 	font-family: 'Open Sans', sans-serif;
 	position: absolute;
-	left: 372px;
-	top: 200px;
-	width: 731px;
-	height: 154px;
+	background-position: center;
+	width: 100%;
+	height: 25%;
 	z-index: 8;
 	-webkit-background-size: contain;
 	-moz-background-size: contain;
@@ -21,7 +20,7 @@
 	margin: auto;
 	float: bottom right;
 	position: absolute;
-	left: 1003px;
+	left: 33%;
 	top: 270px;
 	height: 352px;
 }
@@ -35,7 +34,7 @@
 	top: 7%;
 	left: 11%;
 	margin: 34px 0;
-} 
+}
 
 form {
 	padding:32% 3em;
@@ -103,7 +102,7 @@ input[type="submit"]{
 .form_error{
 	position: relative;
     overflow: visible;
-    float: none;   
+    float: none;
     color: #f00;
     z-index: 999;
 }
