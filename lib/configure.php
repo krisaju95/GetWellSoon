@@ -1,7 +1,7 @@
 <?php
         $servername = 'localhost';
-        $username = 'admin';
-        $password = "password";
+        $username = 'root';
+        $password = "mysql";
         $dbname = "health_centre";
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
