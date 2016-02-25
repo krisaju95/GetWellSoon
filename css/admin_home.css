@@ -27,7 +27,7 @@ body {
 	border: 1px solid #459A00;
 	position: absolute;
 	top: 44%;
-	left: 48%;
+	left: 45%;
 }
 
 .issue_med:hover {
@@ -61,15 +61,15 @@ body {
 #button_table {
 	position: absolute;
 	top: 24%;
-	left: 12%;	
+	left: 2%;
 }
 
 .button:hover {
-	background:#373737; 
+	background:#373737;
 }
 
 .button:onclick {
-		
+
 }
 
 #button_table td {
@@ -89,7 +89,7 @@ body {
 #profile_settings {
 	position:absolute;
 	top: 113px;
-	left: 1110px;	
+	left: 80%;
 }
 
 .update_prof {
@@ -130,7 +130,7 @@ body {
 	height:25px;
 	position:absolute;
 	top: 38px;
-	left: 1160px;
+	left: 85%;
 	color: #fff;
 	text-align:center;
 	font-size:16px;
@@ -140,27 +140,27 @@ body {
 	-webkit-border-radius: 2px;
 	border: 1px solid #459A00;
 }
-.marquee 
-{    
-    height: 25px;  
-    margin: 25px auto;  
-    overflow: hidden;  
+.marquee
+{
+    height: 25px;
+    margin: 25px auto;
+    overflow: hidden;
     position: absolute;
     top:75%;
     left:1%;
-    right:1%;  
-    border: 1px solid #000;  
-    margin: 25px auto;    
+    right:1%;
+    border: 1px solid #000;
+    margin: 25px auto;
 	font-family: times;
-	font-size:20px;  
+	font-size:20px;
     color: white;
-    
-  -webkit-border-radius: 5px;  
-  border-radius: 5px;  
-  
-  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, .5), 0px 1px 0px rgba(250, 250, 250, .2);  
-          box-shadow: inset 0px 2px 2px rgba(0, 0, 0, .5), 0px 1px 0px rgba(250, 250, 250, .2);  
-}  
+
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, .5), 0px 1px 0px rgba(250, 250, 250, .2);
+          box-shadow: inset 0px 2px 2px rgba(0, 0, 0, .5), 0px 1px 0px rgba(250, 250, 250, .2);
+}
 
 a
 {
