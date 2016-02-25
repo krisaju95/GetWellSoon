@@ -15,7 +15,7 @@ body {
 	-o-background-size: cover;
 	background-size: cover;
 	position: absolute;
-	left: 130px;
+	left: 7%;
 	top: 31px;
 	width: 39px;
 	height: 30px;
@@ -32,7 +32,7 @@ body {
 	height:25px;
 	position:absolute;
 	top: 38px;
-	left: 1160px;
+	left: 85%;
 	color: #fff;
 	text-align:center;
 	font-size:16px;
@@ -51,30 +51,29 @@ body {
 	line-height: 0.5;
 	text-align: left;
 	position: absolute;
-	left: 118px;
+	left: 10%;
 	top: 131px;
 	z-index: 2;
 }
 
 form {
-	font-size: 25px;
+	font-size: 20px;
 	color: rgb(255, 198, 2);
 	line-height: 200%;
 	text-align: left;
 	position: absolute;
-	left: 31px;
-	top: 73px;
+	top: 50px;
 	z-index: 2;
 	width: 1053px;
 	height: 635px;
-	
+
 }
 
 .input_class_med {
 	border: 0;
 	background-color: #262626;
 	width: 280px;
-	font-size: 24px;
+	font-size: 20px;
 	border-radius: 2px;
 	padding-left: 7px;
 	padding-top: 2px;
@@ -88,7 +87,7 @@ form {
 	border: 0;
 	background-color: #262626;
 	width: 38px;
-	font-size: 24px;
+	font-size: 20px;
 	border-radius: 2px;
 	padding-left: 7px;
 	padding-top: 2px;
@@ -100,7 +99,7 @@ form {
 
 textarea {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 24px;
+	font-size: 20px;
 	border-radius: 2px;
 	padding-left: 7px;
 	padding-top: 2px;
@@ -150,4 +149,3 @@ input[type="submit"]{
 	border: 1px solid #459A00;
 	margin-left: 430px;
 }
-

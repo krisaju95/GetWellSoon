@@ -14,10 +14,10 @@ else {
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="icon" href="../images/cross.png" type="image/gif" sizes="16x16"> 
+<link rel="icon" href="../images/cross.png" type="image/gif" sizes="16x16">
 <title>Delete Records</title>
 <!--CSS-->
-<link href="../css/record_tables.css" rel="stylesheet" type="text/css"> 
+<link href="../css/record_tables.css" rel="stylesheet" type="text/css">
 
 <!-- dataTable -->
 <link rel="stylesheet" type="text/css" href="../jQueryAssets/datatables/css/jquery.dataTables1.css">
@@ -38,7 +38,7 @@ $(document).ready(function() {
          [10, 50, 100, -1],
          [10, 50, 100, "All"]
 		]
-	});	
+	});
 } );
 </script>
 
@@ -86,7 +86,7 @@ Delete Record:-
 	if(isset($_POST['confirm']) && isset($_POST['case'])) {
 		$count=0;
 		if( !isset($_POST['case']) || !is_array($_POST['case']) ) {
-		?><script>alert("An error has occurred while processing your request");</script> 
+		?><script>alert("An error has occurred while processing your request");</script>
 		<?php
 		}
 		else {
@@ -102,17 +102,17 @@ Delete Record:-
 					if($result) {
 						$result=mysqli_query($conn, "Delete from remarks where Pat_Id = '{$patient[0]}' and Dep_Name = '{$patient[1]}'");
 					}
-					else {$flag=false; break;}
+					else {echo "1";$flag=false; break;}
 				}
-				else {$flag=false; break;}
+				else {echo "2";$flag=false; break;}
 			}
-			else {$flag=false;break;}
+			else {echo "3";$flag=false;break;}
 			$count++;
 		}
 		if ($flag) {
 			?><script>alert("The <?php echo $count ;?> records have been deleted successfully.");</script> <?php
 		} else {
-			?><script>alert("An error has occurred while processing your request.");</script> <?php
+			?><script>alert("An error has occurred while processing your request here.");</script> <?php
 		}
 		}
 	}
@@ -124,15 +124,15 @@ Delete Record:-
 <div id="datatable3">
 <table id="data" class="display">
 	<thead>
-		<tr id="datatable2">		
+		<tr id="datatable2">
 			<th><input id="selectall" type="checkbox"></th>
 			<th>Patient ID</th>
 			<th>Name</th>
 			<th>Dependent</th>
 		</tr>
-	</thead>	
+	</thead>
 	<tbody>
-	
+
 		<?php
 			$result = mysqli_query($conn, "SELECT * from patient");
 			$cnt=0;
@@ -147,7 +147,7 @@ Delete Record:-
 			</form>
 		</tr>
 		<?php } ?>
-		
+
 	</tbody>
 </div>
 </body>
