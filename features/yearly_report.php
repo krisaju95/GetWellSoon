@@ -13,7 +13,7 @@
 	{
 		$curr_year = date("Y");
 	}
-	else 
+	else
 	{
 		$curr_year = date("Y")-1;
 	}
@@ -26,7 +26,7 @@
 <title>Yearly Report</title>
 
 <!--CSS-->
-<link href="../css/yearly_report.css" rel="stylesheet" type="text/css"> 
+<link href="../css/yearly_report.css" rel="stylesheet" type="text/css">
 
 <!--JavaScript-->
 <script>
@@ -59,7 +59,7 @@
 
 <?php
 	$result = mysqli_query($conn, "SELECT * From Yearly_Report");
-	while (	$row = mysqli_fetch_array($result) ) 
+	while (	$row = mysqli_fetch_array($result) )
 	{
 		$prev_year = $row['Year'];
 		if ($row['Year'] == $_POST['year'])
@@ -72,14 +72,14 @@
 			break;
 		}
 	}
-	
+
 	if (! $found) //If the values are not in the database, calculate till date and store in the database
 	{
 
 			$yr = $prev_year + 1;
 			while ($yr <= $curr_year)
 			{
-				
+
 				$p_yr = $yr-1;
 				$result = mysqli_query($conn, "SELECT * From Yearly_Report WHERE (Year = '$p_yr');");
 				$row = mysqli_fetch_array($result);
@@ -94,12 +94,12 @@
 				$consumption = $row['Total'];
 				$clbal = $op+$pur-$consumption;
 
-				$result = mysqli_query($conn, "INSERT INTO Yearly_Report VALUES ('{$yr}','{$opbal}','{$pur}','{$consumption}','{$clbal}');");		
-				
+				$result = mysqli_query($conn, "INSERT INTO Yearly_Report VALUES ('{$yr}','{$opbal}','{$pur}','{$consumption}','{$clbal}');");
+
 				$yr = $yr + 1;
 			}
 			$result = mysqli_query($conn, "SELECT * From Yearly_Report");
-			while (	$row = mysqli_fetch_array($result) ) 
+			while (	$row = mysqli_fetch_array($result) )
 			{
 				if ($row['Year'] == $_POST['year'])
 				{
@@ -112,28 +112,28 @@
 			}
 	}
 
-?>	
-	
-	
-	
+?>
+
+
+
 	<div id="stmt">
-		<h1>Statement as on &nbsp; <span id="close_date" style="color:white">31-03-<?php if(!isset($_POST['year'])) echo $curr_year; else echo $_POST['year']; ?></span></h1> 
+		<h1>Statement as on &nbsp; <span id="close_date" style="color:white">31-03-<?php if(!isset($_POST['year'])) echo $curr_year; else echo $_POST['year']; ?></span></h1>
 		<table id="report_table">
 			<tr>
 				<td>Opening Balance </td>
-				<td>Rs. <?php echo $opbal; ?> </td>
+				<td><?php setlocale(LC_MONETARY, 'en_IN');echo money_format('%i', $opbal); ?> </td>
 			</tr>
-			<tr> 
+			<tr>
 				<td>Total Purchase </td>
-				<td>Rs. <?php echo $pur; ?> </td>
+				<td><?php setlocale(LC_MONETARY, 'en_IN');echo money_format('%i', $pur); ?> </td>
 			</tr>
 			<tr>
 				<td>Consumption </td>
-				<td>Rs. <?php echo $consumption; ?></td>
+				<td><?php setlocale(LC_MONETARY, 'en_IN');echo money_format('%i',$consumption); ?></td>
 			</tr>
 			<tr>
 				<td>Closing Balance </td>
-				<td>Rs. <?php echo $clbal; ?> </td>
+				<td><?php setlocale(LC_MONETARY, 'en_IN');echo money_format('%i',$clbal); ?> </td>
 			</tr>
 		</table>
 	</div>
@@ -142,7 +142,7 @@
 		$_SESSION['opbal']=$opbal;
 		$_SESSION['pur']=$pur;
 		$_SESSION['consumption']=$consumption;
-		$_SESSION['clbal']=$clbal;		
+		$_SESSION['clbal']=$clbal;
 	?>
 </body>
 </html>

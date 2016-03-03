@@ -6,7 +6,7 @@
 	session_start();
 	if(isset($_SESSION['login_type']))
 	{
-	if ($_SESSION['login_type']=="Doctor") 
+	if ($_SESSION['login_type']=="Doctor")
 	{
 		header("location: ../doctor_home.php");
 	}
@@ -23,8 +23,8 @@ else {
 <title>Report</title>
 
 <!--CSS-->
-<link href="../css/report.css" rel="stylesheet" type="text/css"> 
-<link rel="icon" href="../images/cross.png" type="image/gif" sizes="16x16"> 
+<link href="../css/report.css" rel="stylesheet" type="text/css">
+<link rel="icon" href="../images/cross.png" type="image/gif" sizes="16x16">
 <!-- Datepicker -->
 <link href="../jQueryAssets/datepicker/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
 <link href="../jQueryAssets/datepicker/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@ else {
 
 <script type="text/javascript">
 $(function() {
-	$( ".Datepicker" ).datepicker({ changeMonth: true, changeYear: true, showOtherMonths: true, selectOtherMonths: true, dateFormat:"dd-mm-yy"}); 
+	$( ".Datepicker" ).datepicker({ changeMonth: true, changeYear: true, showOtherMonths: true, selectOtherMonths: true, dateFormat:"dd-mm-yy"});
 });
 </script>
 
@@ -51,7 +51,7 @@ $(function() {
 
 
 $(document).ready(function() {
-	$('#data').DataTable();	
+	$('#data').DataTable();
 } );
 
 
@@ -70,7 +70,7 @@ $(document).ready(function() {
 <input type="button" class="home" value="" onClick="location.href='../home.php'">
 <input type="button" class="logout" value="logout" onClick="location.href='../lib/logout.php'">
 <div id="table1">
-Report :- 
+Report :-
 </div>
 
 <div id="from_to">
@@ -79,9 +79,9 @@ Report :-
 		<td><input type="text" class='Datepicker' name="from" size="20" maxlength="10" style="background-color:#242426;color:white" value=<?php echo $_POST['from'];?>></td>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		To
-		<td><input type="text" class='Datepicker' name="to" size="20" maxlength="10" style="background-color:#242426;color:white" value=<?php echo $_POST['to'];?>></td> 
+		<td><input type="text" class='Datepicker' name="to" size="20" maxlength="10" style="background-color:#242426;color:white" value=<?php echo $_POST['to'];?>></td>
 		<input type="submit" name="go" value="Go" class="button" id="go">
-	</form>   
+	</form>
 </div>
 
 <div id="Stock_Values">
@@ -95,7 +95,7 @@ Report :-
 	<thead>
 		<tr id="datatable2">
 			<th>Type</th>
-			<th>Date</th>		
+			<th>Date</th>
 			<th>Purchase Date</th>
 			<th>Bill No</th>
 			<th>Received From</th>
@@ -105,14 +105,14 @@ Report :-
 			<th>Qty</th>
 			<th>Cost</th>
 		</tr>
-	</thead>	
+	</thead>
 	<tbody>
-	
+
 		<?php
 			$frm=date("Y-m-d", strtotime($_POST['from']));
 			$to=date("Y-m-d", strtotime($_POST['to']));
 			$result = mysqli_query($conn, "SELECT * from Transactions WHERE ((Transaction_Date >= '$frm') AND (Transaction_Date <= '$to'));");
-			while($row = mysqli_fetch_array($result)) 
+			while($row = mysqli_fetch_array($result))
 			{
 				$count = $count+1;
 		?>
@@ -139,11 +139,11 @@ Report :-
 			if ($row['Total']==NULL) $rem = 0; else $rem = $row['Total'];
 	    ?>
 	<script>
-		document.getElementById("total_value").innerHTML = "Value Added : <?php echo $add ?>";
-		document.getElementById("total_rem").innerHTML = "Value Removed : <?php echo $rem ?>";
+		document.getElementById("total_value").innerHTML = "Value Added : <?php setlocale(LC_MONETARY, 'en_IN');echo money_format('%i',$add); ?>";
+		document.getElementById("total_rem").innerHTML = "Value Removed : <?php setlocale(LC_MONETARY, 'en_IN');echo money_format('%i',$rem); ?>";
 		document.getElementById("total_transactions").innerHTML = "No of Transactions : <?php echo $count ?>";
 	</script>
-	
+
 	</tbody>
 </div>
 </body>

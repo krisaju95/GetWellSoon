@@ -150,13 +150,13 @@ input[type="text"] {
 	line-height: 0.5;
 	text-align: left;
 	position: absolute;
-	left: 12%;
+	left: 5%;
 	top: 285px;
 	z-index: 2;
 }
 
 
-input[type="search"] 
+input[type="search"]
 {
 	font-family: 'Open Sans', sans-serif;
 	color: #000;
@@ -168,5 +168,3 @@ input[type="search"]
 	font-size:16px;
 	margin-bottom:10px;
 }
-
-

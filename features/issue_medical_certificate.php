@@ -4,7 +4,7 @@ include ('../lib/configure.php');
 session_start();
 if(isset($_SESSION['login_type']))
 {
-	if ($_SESSION['login_type']=="Doctor") 
+	if ($_SESSION['login_type']=="Doctor")
 	{
 		header("location: ../doctor_home.php");
 	}
@@ -20,7 +20,7 @@ if (isset($_POST['Confirm']))
 	if ($query)
 	{
 	?>
-	
+
 		<script>alert("Success")</script>
 	<?php
 	}
@@ -30,7 +30,7 @@ if (isset($_POST['Confirm']))
 	<?php
 		}
 }
-	
+
 
 ?>
 
@@ -41,7 +41,7 @@ if (isset($_POST['Confirm']))
 <title>Issue Medical Certificate</title>
 
 <!--CSS-->
-<link href="../css/medical_certificate.css" rel="stylesheet" type="text/css"> 
+<link href="../css/medical_certificate.css" rel="stylesheet" type="text/css">
 <script src="../jQueryAssets/js/jquery.min.js"></script>
 <link rel="stylesheet" href="../jQueryAssets/js_css/jquery-ui.css"/>
 <script src="../jQueryAssets/js/jquery-ui.min.js"></script>
@@ -56,7 +56,7 @@ if (isset($_POST['Confirm']))
 
 <script type="text/javascript">
 $(function() {
-	$( ".Datepicker" ).datepicker({ changeMonth: true, changeYear: true, showOtherMonths: true, selectOtherMonths: true, dateFormat:"dd-mm-yy"}); 
+	$( ".Datepicker" ).datepicker({ changeMonth: true, changeYear: true, showOtherMonths: true, selectOtherMonths: true, dateFormat:"dd-mm-yy"});
 });
 </script>
 
@@ -75,7 +75,7 @@ $(function() {
 
 $(document).ready(function()
 {
-	$('#data').DataTable();	
+	$('#data').DataTable();
 } );
 
 
@@ -93,7 +93,7 @@ $(document).ready(function()
 <span style="position:relative;left:400px">Medical Certificate</span>
 
 <?php
-if(isset($_POST['insert'])) 
+if(isset($_POST['insert']))
 {
 	if (($_POST['Name'] != NULL) and ($_POST['RollNo'] != NULL) and ($_POST['From'] != NULL) and ($_POST['Days']!=NULL))
 	{
@@ -126,7 +126,7 @@ if(isset($_POST['insert']))
 		<script>
 			window.alert("Please fill in Name, Roll No, From Date and No of Days to insert");
 		</script>
-<?php		
+<?php
 	}
 }
 ?>
@@ -184,19 +184,19 @@ if(isset($_POST['insert']))
 			<th></th>
 			<th></th>
 		</tr>
-	</thead>	
-	<tbody>	
+	</thead>
+	<tbody>
 		<?php
-			if(isset($_POST['delete'])) 
+			if(isset($_POST['delete']))
 			{
 				$slno = $_POST['SlNo'];
 				mysqli_query($conn, "DELETE  FROM Temp_Medical_Certificate WHERE (CftNo='{$slno}');");
 			}
-			if(isset($_POST['confirm'])) 
+			if(isset($_POST['confirm']))
 			{
 				$result = mysqli_query($conn,"SELECT * FROM Medical_Certificate WHERE CftNo=(select max(CftNo) from Medical_Certificate);");
 				$row = mysqli_fetch_array($result);
-				$slno = $row['CftNo']+1;				
+				$slno = $row['CftNo']+1;
 				$tslno = $_POST['SlNo'];
 				$neg1 = -1;
 				mysqli_query($conn, "UPDATE Temp_Medical_Certificate SET CftNo='{$neg1}' WHERE (CftNo='{$tslno}');");
@@ -204,7 +204,7 @@ if(isset($_POST['insert']))
 				mysqli_query($conn, "UPDATE Medical_Certificate SET CftNo='{$slno}' WHERE (CftNo='{$neg1}');");
 				mysqli_query($conn, "DELETE  FROM Temp_Medical_Certificate WHERE (CftNo='{$neg1}');");
 			}
-			
+
 			$result = mysqli_query($conn, "SELECT * from Temp_Medical_Certificate");
 			while($row = mysqli_fetch_array($result)) {
 		?>
@@ -227,7 +227,7 @@ if(isset($_POST['insert']))
 
 		</tr>
 		<?php } ?>
-		
+
 	</tbody>
 </div>
 </body>
