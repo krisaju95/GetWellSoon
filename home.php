@@ -1,4 +1,4 @@
-<!-- 
+<!--
  * File name: home.php
  * This page is the home page of the admin.
  * Provides many features like
@@ -17,7 +17,7 @@
  *		 6. Issuing medicine to patients.
  *	  iii. Profile of admin
  *		 1. Update admin's profile.
- *		 2. Update the doctors and create accounts for doctors who joins the health centre.	 
+ *		 2. Update the doctors and create accounts for doctors who joins the health centre.
 -->
 
 <?php
@@ -38,7 +38,7 @@ $min_qty = 10;
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" href="images/cross.png" type="image/gif" sizes="16x16"> 
+<link rel="icon" href="images/cross.png" type="image/gif" sizes="16x16">
 <title><?php echo $_SESSION['login_type']; ?> Home Page</title>
 <link href="css/admin_home.css" rel="stylesheet" type="text/css">
 </head>
@@ -71,7 +71,7 @@ $min_qty = 10;
 	  <td><input type="button" class="button" value="Issue Med. Cft" onClick="location.href='features/issue_medical_certificate.php'"></td>
     </tr>
 	<tr>
-      <td></td>
+      <td><input type="button" class="button" value="Monthly Report" onClick="location.href='features/monthly_records.php'"></td>
 	  <td><input type="button" class="button" value="View Med. Cft" onClick="location.href='features/view_medical_certificate.php'"></td>
     </tr>
   </tbody>
@@ -99,13 +99,13 @@ $min_qty = 10;
 </div>
 <input type="button" class="logout" value="logout" onClick="location.href='lib/logout.php'">
 
-<div class="marquee">  
+<div class="marquee">
 
 <?php
 	$pcount=0;
 	$scroll_text = "";
 // Alert code. Expiry Alert
-	
+
 	$curr_date = date("Y/m/d");
 	$check_date = date("Y/m/d", strtotime("+30 days"));
 	$result = mysqli_query($conn, "SELECT * from medicine_stock WHERE (Expiry < '$check_date')");
@@ -116,7 +116,7 @@ $min_qty = 10;
 		$pcount=$pcount+1;
 		$scroll_text = $scroll_text."<a href='features/remove_stock.php?q=$med_name' style='text-decoration: none;color:red;'>Expiry alert : ".$row['MedicineName']." ".$row['BatchNo']." ".date("d/m/Y",strtotime($row['Expiry']))."</a>&nbsp; | &nbsp; ";
 	}
-	
+
 // Out of Stock Alert
 	$rslt = mysqli_query($conn, "SELECT DISTINCT MedicineName FROM medicine_stock;");
 	while($med = mysqli_fetch_array($rslt))
@@ -137,4 +137,4 @@ $min_qty = 10;
 	<marquee onmouseover="this.setAttribute('scrollamount', 0, 0);this.stop();" onmouseout="this.setAttribute('scrollamount', 6, 0);this.start();"><a href="features/view_stock" style="text-decoration: none"><font color="#850303" face="times"><?php echo $scroll_text; ?></font></a></marquee>
 </div>
 </body>
-</html>	
+</html>
