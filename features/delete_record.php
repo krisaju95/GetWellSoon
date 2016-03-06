@@ -91,28 +91,15 @@ Delete Record:-
 		}
 		else {
 		$delete = $_POST['case'];
-		$flag=true;
 		foreach ($delete as $val) {
 			$patient = explode("!+!", $val);
 			$result=mysqli_query($conn, "Delete from patient where Patient_Id = '{$patient[0]}' and Dependent = '{$patient[1]}'");
-			if($result) {
-				$result=mysqli_query($conn, "Delete from consultation where PatientId = '{$patient[0]}' and Dependent = '{$patient[1]}'");
-				if($result) {
-					$result=mysqli_query($conn, "Delete from medical_certificate where RollNo = '{$patient[0]}' and Dependent = '{$patient[1]}'");
-					if($result) {
-						$result=mysqli_query($conn, "Delete from remarks where Pat_Id = '{$patient[0]}' and Dep_Name = '{$patient[1]}'");
-					}
-					else {echo "1";$flag=false; break;}
-				}
-				else {echo "2";$flag=false; break;}
-			}
-			else {echo "3";$flag=false;break;}
 			$count++;
 		}
-		if ($flag) {
+		if (mysqli_affected_rows($conn) > 0) {
 			?><script>alert("The <?php echo $count ;?> records have been deleted successfully.");</script> <?php
 		} else {
-			?><script>alert("An error has occurred while processing your request here.");</script> <?php
+			?><script>alert("An error has occurred while processing your request.");</script> <?php
 		}
 		}
 	}
@@ -153,3 +140,4 @@ Delete Record:-
 </body>
 
 </html>
+>>>>>>> 9caaece2926bd665c2dcd21f41ecd7bda4b0502d

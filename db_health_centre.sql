@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb2+deb7u1
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 08, 2015 at 10:19 AM
--- Server version: 5.5.41
--- PHP Version: 5.4.36-0+deb7u1
+-- Generation Time: Feb 24, 2016 at 11:57 AM
+-- Server version: 5.5.35-1ubuntu1
+-- PHP Version: 5.5.9-1ubuntu4
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -81,7 +81,8 @@ INSERT INTO `Medical_Certificate` (`CftNo`, `IssueDate`, `Name`, `PatientType`, 
 (4, '2015-05-01', 'Vishal Peter', 'Student', 'B120806CS', 'Asif Muhammad', '2015-05-01', 2, 'Cough', 'AA Celine'),
 (5, '2015-05-05', 'Abhijith K A', 'Student', 'B120771CS', '', '2015-05-01', 20, 'Viral Fever', 'AA Celine'),
 (6, '2015-04-28', 'b', 'Student', '1234', 'b', '2015-05-02', 20, 'Cancer', 'Shiva Sundar'),
-(7, '2015-05-12', 'b', 'Faculty', '1234', 'b', '2015-05-02', 2, 'Whooping Cough', 'Sankar Lal');
+(7, '2015-05-12', 'b', 'Faculty', '1234', 'b', '2015-05-02', 2, 'Whooping Cough', 'Sankar Lal'),
+(8, '2015-05-03', 'Abhijith K A', 'Student', 'b120771cs', '', '2015-05-03', 20, 'Cold', 'AA Celine');
 
 -- --------------------------------------------------------
 
@@ -107,29 +108,10 @@ CREATE TABLE IF NOT EXISTS `medicine_stock` (
 --
 
 INSERT INTO `medicine_stock` (`Date`, `BillNo`, `RecievedFrom`, `MedicineName`, `BatchNo`, `Expiry`, `Qty`, `Cost`) VALUES
-('2015-04-30', 'a', 'a', 'a', 'a', '2015-04-30', 1890, 3978.95),
-('2015-05-01', '44444', 'Essar ec', 'gggg', 'b234', '2015-05-21', 15, 750),
-('2015-04-09', 'jh', 'kjh', 'kjh', 'kjh', '2021-04-14', 80, 80),
-('2015-05-06', '1212', 'm10', 'medicine1', '11', '2015-05-12', 2, 12),
-('2015-05-02', '1233', 'NITC', 'paracetamol', 'b12', '2015-05-06', 50, 500);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `member`
---
-
-CREATE TABLE IF NOT EXISTS `member` (
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `member`
---
-
-INSERT INTO `member` (`username`, `password`) VALUES
-('admin', 'password');
+('2015-01-06', '3453', '343', '2343', '234', '2015-02-09', 234, 234),
+('2014-08-13', 'fe43', 'fadsf', 'fasdf', 'fadsf', '2016-02-09', 34, 5435),
+('2015-02-18', 'gfd', 'sdfsd', 'fds', 'faf', '2015-02-12', 34, 3454),
+('2015-02-02', '354354', 'dafdf', 'gafg', '3453', '2016-02-25', 43, 222);
 
 -- --------------------------------------------------------
 
@@ -197,7 +179,11 @@ INSERT INTO `Remarks` (`Date`, `Pat_Id`, `Dep_Name`, `Remark`, `Entered_By`) VAL
 ('2015-05-01', 'b120806cs', '', ' too many allergies', ''),
 ('2015-05-01', 'b120301cs', '', ' Akshay has issues!!', ''),
 ('2015-05-01', 'b120806cs', '', ' allergy!!!', ''),
-('2015-05-08', 'b120771cs', '', ' X-ray report : 2aex', 'lab (labadmin) ');
+('2015-05-08', 'b120771cs', '', ' Allergic to penicillin', 'doctor (Doctor) '),
+('2015-05-08', 'b120771cs', '', ' Xray scan report', 'lab (labadmin) '),
+('2015-05-14', 'b120381cs', '', 'allergic to pencillin\r\n', 'anjal (Doctor) '),
+('2016-01-03', 'b120806cs', '', ' ', 'lab (labadmin) '),
+('2016-01-03', 'b120806cs', '', ' sfdga', 'lab (labadmin) ');
 
 -- --------------------------------------------------------
 
@@ -234,13 +220,6 @@ CREATE TABLE IF NOT EXISTS `Temp_Medical_Certificate` (
   `Doctor` varchar(255) NOT NULL,
   PRIMARY KEY (`CftNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `Temp_Medical_Certificate`
---
-
-INSERT INTO `Temp_Medical_Certificate` (`CftNo`, `IssueDate`, `Name`, `PatientType`, `RollNo`, `Dependent`, `FromDate`, `NoOfDays`, `Cause`, `Doctor`) VALUES
-(1, '2015-05-03', 'Abhijith K A', 'Student', 'b120771cs', '', '2015-05-03', 20, 'Cold', 'AA Celine');
 
 -- --------------------------------------------------------
 
@@ -299,7 +278,23 @@ INSERT INTO `Transactions` (`Type`, `Transaction_Date`, `Date`, `BillNo`, `Recie
 ('Removal', '2015-05-01', '2015-05-02', 'b12', 'NITC', 'paracetamol', 'b12', '2015-05-06', 50, 500),
 ('Removal', '2015-05-01', '2015-04-09', 'kjh', 'kjh', 'kjh', 'kjh', '2021-04-14', 7, 7),
 ('Addition', '2015-05-01', '2015-05-01', 'b234', 'Essar ec', 'gggg', 'b234', '2015-05-21', 20, 1000),
-('Removal', '2015-05-01', '2015-05-01', 'b234', 'Essar ec', 'gggg', 'b234', '2015-05-21', 5, 250);
+('Removal', '2015-05-01', '2015-05-01', 'b234', 'Essar ec', 'gggg', 'b234', '2015-05-21', 5, 250),
+('Addition', '2015-07-09', '2015-07-01', '1223', '123', '1234', '1223', '2015-06-29', 1, 123),
+('Removal', '2015-08-14', '2015-07-01', '1223', '123', '1234', '1223', '2015-06-29', 1, 123),
+('Addition', '2016-01-06', '2016-01-05', '123', 'essar', 'para', '123', '2021-01-14', 20, 100),
+('Addition', '2016-02-24', '2016-02-10', '232', 'fdsaf', 'fdsaf', '232', '2016-02-02', 34, 34343),
+('Removal', '2016-02-24', '2015-05-01', 'b234', 'Essar ec', 'gggg', 'b234', '2015-05-21', 5, 250),
+('Removal', '2016-02-24', '2015-05-01', 'b234', 'Essar ec', 'gggg', 'b234', '2015-05-21', 10, 500),
+('Removal', '2016-02-24', '2015-05-02', 'b12', 'NITC', 'paracetamol', 'b12', '2015-05-06', 50, 500),
+('Removal', '2016-02-24', '2016-01-05', '123', 'essar', 'para', '123', '2021-01-14', 20, 100),
+('Removal', '2016-02-24', '2015-05-06', '11', 'm10', 'medicine1', '11', '2015-05-12', 2, 12),
+('Removal', '2016-02-24', '2015-04-09', 'kjh', 'kjh', 'kjh', 'kjh', '2021-04-14', 80, 80),
+('Removal', '2016-02-24', '2016-02-10', '232', 'fdsaf', 'fdsaf', '232', '2016-02-02', 34, 34343),
+('Removal', '2016-02-24', '2015-04-30', 'a', 'a', 'a', 'a', '2015-04-30', 1890, 3978.95),
+('Addition', '2016-02-24', '2014-08-13', 'fadsf', 'fadsf', 'fasdf', 'fadsf', '2016-02-09', 34, 5435),
+('Addition', '2016-02-24', '2015-02-02', '3453', 'dafdf', 'gafg', '3453', '2016-02-25', 43, 222),
+('Addition', '2015-02-24', '2015-01-06', '234', '343', '2343', '234', '2015-02-09', 234, 234),
+('Addition', '2015-02-24', '2015-02-18', 'faf', 'sdfsd', 'fds', 'faf', '2015-02-12', 34, 3454);
 
 -- --------------------------------------------------------
 
@@ -324,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`Name`, `UserName`, `Password`, `SecQn1`, `Ans1`, `SecQn2`, `Ans2`, `Type`) VALUES
-('Abraham Lincoln', 'admin', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin'),
+('Sachin Tendulkar', 'admin', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin'),
 ('ajn', 'ajn', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'abcd', '81fe8bfe87576c3ecb22426f8e57847382917acf', 'abcd', '81fe8bfe87576c3ecb22426f8e57847382917acf', 'Doctor'),
 ('anjal', 'anjal', '17ca20cfa601aec3e03f5c4d6e8aa042c97f7744', 'how are you?', '2a1b875b84fa7245c2d4dfa761170884db7b31d9', 'what are you?', 'd787f56b080945c1ec0b3343cbf962ca427bb8ef', 'Doctor'),
 ('anjalsan', 'anjal.saneen', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', '1+1', 'da4b9237bacccdf19c0760cab7aec4a8359010b0', '2+5', '902ba3cda1883801594b6e1b452790cc53948fda', 'Doctor'),
@@ -344,15 +339,15 @@ CREATE TABLE IF NOT EXISTS `Yearly_Report` (
   `Consumption` float DEFAULT NULL,
   `ClosingBal` float DEFAULT NULL,
   PRIMARY KEY (`Year`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2015 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2016 ;
 
 --
 -- Dumping data for table `Yearly_Report`
 --
 
 INSERT INTO `Yearly_Report` (`Year`, `OpeningBal`, `Purchase`, `Consumption`, `ClosingBal`) VALUES
-(2013, 0, 0, 0, 0),
-(2014, 0, 0, 0, 0);
+(2014, 0, 0, 0, 0),
+(2015, 0, 3688, 0, 3688);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
