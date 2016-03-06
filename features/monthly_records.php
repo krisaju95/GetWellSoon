@@ -60,7 +60,7 @@ $(document).ready(function() {
 <script>
 	function reset()
 	{
-		<?php $count = 0; ?>;
+		<?php $creditCount = 0; $debitCount = 0;?>;
 	}
 </script>
 
@@ -93,7 +93,8 @@ Monthly Report
 <?php
 if (isset($_POST['med_name'])){?>
     <div id="Stock_Values">
-        <span>Medicine: <?php echo $_POST['med_name'];?></span>
+        <span>Medicine: <?php echo $_POST['med_name'];?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="balance">Balance: 0</span>
 
     </div>
 
@@ -105,14 +106,14 @@ if (isset($_POST['med_name'])){?>
             <th>Month</th>
 			<th>Added</th>
 			<th>Removed</th>
-			<th>Balance</th>
 		</tr>
 	</thead>
 	<tbody>
 
 		<?php
     			$result = mysqli_query($conn, "SELECT Month(Date), Year(Date) from Transactions WHERE MedicineName = '".$_POST['med_name']."' GROUP BY MONTH(Date) + '/' + YEAR(Date);");
-    			while($row = mysqli_fetch_array($result))
+                //$creditCount = 0; $debitCount = 0;
+                while($row = mysqli_fetch_array($result))
     			{
                     $m = $row['Month(Date)'];
                     $y = $row['Year(Date)'];
@@ -122,7 +123,8 @@ if (isset($_POST['med_name'])){?>
                     $debit = mysqli_fetch_array($debit);
                     $dateObj   = DateTime::createFromFormat('!m', $m);
                     $monthName = $dateObj->format('F');
-                    $count = $count+1;
+                    $creditCount = $creditCount+$credit[0];
+                    $debitCount = $debitCount+$debit[0];
     		?>
     		<tr>
     			<form action="" method="post">
@@ -130,16 +132,18 @@ if (isset($_POST['med_name'])){?>
     				<td><center><?php echo $monthName;?></center></td>
     				<td><center><?php echo $credit[0];?></center></td>
     				<td><center><?php echo $debit[0]?></center></td>
-                    <td><center><?php echo "0"?></center></td>
     			</form>
     		</tr>
     		<?php }
-            echo $count;
+            $creditCount = $creditCount - $debitCount;
+            echo $creditCount;
             }?>
 
 
 <!--Original part -->
-
+    <script>
+        document.getElementById("balance").innerHTML = "Balance: <?php echo $creditCount; ?>";
+    </script>
 
 
 
