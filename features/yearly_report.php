@@ -62,6 +62,7 @@
 	while (	$row = mysqli_fetch_array($result) )
 	{
 		$prev_year = $row['Year'];
+		$found= false;
 		if ($row['Year'] == $_POST['year'])
 		{
 			$opbal = $row['OpeningBal'];
@@ -72,10 +73,8 @@
 			break;
 		}
 	}
-
 	if (! $found) //If the values are not in the database, calculate till date and store in the database
 	{
-
 			$yr = $prev_year + 1;
 			while ($yr <= $curr_year)
 			{
@@ -92,7 +91,7 @@
 				$result = mysqli_query($conn, "SELECT SUM(Cost) AS Total from Transactions WHERE ((Transaction_Date >= '$from') AND (Transaction_Date <= '$to') AND (Type='Removal'));");
 				$row = mysqli_fetch_array($result);
 				$consumption = $row['Total'];
-				$clbal = $op+$pur-$consumption;
+				$clbal = $opbal+$pur-$consumption;
 
 				$result = mysqli_query($conn, "INSERT INTO Yearly_Report VALUES ('{$yr}','{$opbal}','{$pur}','{$consumption}','{$clbal}');");
 
