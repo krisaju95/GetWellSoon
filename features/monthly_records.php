@@ -78,7 +78,7 @@ Monthly Report
         Medicine Name:
         <select name="med_name">
             <?php
-                $med_list = mysqli_query($conn, "SELECT MedicineName from medicine_stock;");
+                $med_list = mysqli_query($conn, "SELECT MedicineName FROM medicine_stock GROUP BY MedicineName;");
                 while($row = mysqli_fetch_array($med_list)){ ?>
                     <option value="<?php echo $row['MedicineName'];?>"><?php echo $row['MedicineName'];?></option>
         <?php } ?>
@@ -111,7 +111,7 @@ if (isset($_POST['med_name'])){?>
 	<tbody>
 
 		<?php
-    			$result = mysqli_query($conn, "SELECT Month(Date), Year(Date) from Transactions WHERE MedicineName = '".$_POST['med_name']."' GROUP BY MONTH(Date) + '/' + YEAR(Date);");
+    			$result = mysqli_query($conn, "SELECT Month(Date), Year(Date) from Transactions WHERE MedicineName = '".$_POST['med_name']."' GROUP BY Month(Date), Year(Date);");
                 //$creditCount = 0; $debitCount = 0;
                 while($row = mysqli_fetch_array($result))
     			{
@@ -136,7 +136,7 @@ if (isset($_POST['med_name'])){?>
     		</tr>
     		<?php }
             $creditCount = $creditCount - $debitCount;
-            echo $creditCount;
+            //echo $creditCount;
             }?>
 
 

@@ -1,9 +1,9 @@
 <?php
 
         $servername = 'localhost';
-        $username = 'root';
-        $password = "database";
-        $dbname = "health_centre";
+        $username = 'healthcentre';
+        $password = "nitc1234";
+        $dbname = "db_health_centre";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {

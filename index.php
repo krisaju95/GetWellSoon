@@ -92,7 +92,7 @@ body,td,th {
 			<input type="text" name='username' class="text" autocomplete="on" placeholder="User Name"><p class=" icon user"></p>
 		</li>
 		<li>
-			<input name = 'password' type="text" placeholder="Password"><p class=" icon lock"></p>
+			<input name = 'password' type="password" placeholder="Password"><p class=" icon lock"></p>
 		</li>
         <div>
 			<input type="submit" name="submit" value="Sign In" >
