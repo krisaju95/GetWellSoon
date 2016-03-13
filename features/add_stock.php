@@ -1,6 +1,6 @@
 <!--
 Error if same medicine name and batch no is added which is currently present in the database.
-Also medicine number is not correct. Line 128
+Also medicine number is not correct. Line 128 (lloks correct now)
 -->
 <?php
 include ('../lib/configure.php');
