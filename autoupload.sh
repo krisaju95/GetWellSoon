@@ -1,4 +1,4 @@
-cd /home/mahesh/Desktop/Auto-Upload;
+cd /var/www/html/minerva/GetWellSoon;
 var=$(date);
 if [[ `git status --porcelain` ]]; then
    echo "Changed";

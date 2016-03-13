@@ -72,7 +72,6 @@ $(document).ready(function() {
 Add Stock:-
 
 <?php
-echo $_POST['insert'];
 if(isset($_POST['insert']))
 {
 	if (($_POST['Medicine'] != "") and ($_POST['BatchNo'] != "") and ($_POST['Date'] != "") and ($_POST['Qty']!="") and (is_numeric($_POST['Qty'])) and ($_POST['Qty'])>0)
@@ -84,9 +83,11 @@ if(isset($_POST['insert']))
 			$expiry=date("Y-m-d", strtotime("+8 years"));
 
 		$sql = "INSERT INTO temp_medicine_stock VALUES ('{$date}','{$_POST['BillNo']}','{$_POST['ReceivedFrom']}','{$_POST['Medicine']}','{$_POST['BatchNo']}','{$expiry}','{$_POST['Qty']}','{$_POST['Cost']}');";
+		//echo $sql;
 		if ($conn->query($sql) == TRUE)
 		{
 			$_SESSION['item']++;
+			echo $_SESSION[item]++;
 			$_SESSION['temp_stat']=1;
 		}
 		else {?>
