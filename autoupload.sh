@@ -9,5 +9,5 @@ if [[ `git status --porcelain` ]]; then
   echo "$(git push auto_upload origin)";
 else
     echo "Unchanged";
-     echo "$(git push)";
+     echo "$(git push auto_upload origin)";
 fi
