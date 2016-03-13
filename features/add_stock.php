@@ -72,6 +72,7 @@ $(document).ready(function() {
 Add Stock:-
 
 <?php
+echo $_POST['insert'];
 if(isset($_POST['insert']))
 {
 	if (($_POST['Medicine'] != "") and ($_POST['BatchNo'] != "") and ($_POST['Date'] != "") and ($_POST['Qty']!="") and (is_numeric($_POST['Qty'])) and ($_POST['Qty'])>0)
