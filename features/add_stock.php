@@ -115,7 +115,7 @@ if(isset($_POST['insert']))
 			while($row = mysqli_fetch_array($result))
 			{
 				$dt = $row['Date'];
-				$bno = $row['BatchNo'];
+				$bno = $row['BillNo'];
 				$rcvfrm = $row['RecievedFrom'];
 				$md_nm = $row['MedicineName'];
 				$btch_no = $row['BatchNo'];
