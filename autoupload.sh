@@ -10,5 +10,5 @@ if [[ `git status --porcelain` ]]; then
   echo "$(git push auto_upload master)";
 else
     echo "Unchanged";
-     echo "$(git push auto_upload master)";
+   #echo "$(git push auto_upload master)";
 fi
