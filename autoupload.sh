@@ -1,4 +1,5 @@
 cd /var/www/html/minerva/GetWellSoon;
+mysqldump -u healthcentredb_health_centre > db_health_centre.sql
 var=$(date);
 if [[ `git status --porcelain` ]]; then
    echo "Changed";
