@@ -33,7 +33,7 @@
 	function validate()
 	{
 		element = document.getElementById("input_year");
-		if ((element.value < '2011') || (element.value >= <?php echo date("Y") ;?>))
+		if ((element.value < '2011') || (element.value > <?php echo date("Y") ;?>))
 		{
 				window.alert("Invalid Year !!!");
 				element.value="<?php echo $curr_year; ?>";
@@ -58,6 +58,9 @@
 	</div>
 
 <?php
+	/* Make sure that 2011 0 and 0 is in the Yearly Report table, otherwise there will be an error. 2011 because it is set as such
+	 * in the validate function. This initial data must be there in the database.
+	 */
 	$result = mysqli_query($conn, "SELECT * From Yearly_Report");
 	while (	$row = mysqli_fetch_array($result) )
 	{
@@ -76,7 +79,7 @@
 	if (! $found) //If the values are not in the database, calculate till date and store in the database
 	{
 			$yr = $prev_year + 1;
-			while ($yr <= $curr_year)
+			while ($yr <= $curr_year + 1)
 			{
 
 				$p_yr = $yr-1;
@@ -85,10 +88,10 @@
 				$opbal = $row['ClosingBal'];
 				$from = $p_yr."/04/01";
 				$to = $yr."/03/31";
-				$result = mysqli_query($conn, "SELECT SUM(Cost) AS Total from Transactions WHERE ((Transaction_Date >= '$from') AND (Transaction_Date <= '$to') AND (Type='Addition'));");
+				$result = mysqli_query($conn, "SELECT SUM(Cost) AS Total from Transactions WHERE ((Date >= '$from') AND (Date <= '$to') AND (Type='Addition'));");
 				$row = mysqli_fetch_array($result);
 				$pur = $row['Total'];
-				$result = mysqli_query($conn, "SELECT SUM(Cost) AS Total from Transactions WHERE ((Transaction_Date >= '$from') AND (Transaction_Date <= '$to') AND (Type='Removal'));");
+				$result = mysqli_query($conn, "SELECT SUM(Cost) AS Total from Transactions WHERE ((Date >= '$from') AND (Date <= '$to') AND (Type='Removal'));");
 				$row = mysqli_fetch_array($result);
 				$consumption = $row['Total'];
 				$clbal = $opbal+$pur-$consumption;
