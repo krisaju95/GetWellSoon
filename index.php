@@ -73,6 +73,7 @@ if(isset($_POST['submit'])) {
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="images/cross.png" type="image/gif" sizes="16x16">
 <title>NITC Health Centre</title>
 <link href="css/login.css" type="text/css" rel="stylesheet"/>
